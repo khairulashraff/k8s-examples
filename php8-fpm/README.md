@@ -15,5 +15,5 @@
 
 
 Notes:
-1. Use a proper `<tag>` value, either the version of your app or SHA sum of the last commit. K8s will cache the images so it doesn't have to re-pull the images if the pod was re-scheduled. If you use the same tag, it will not re-pull them despite actually being different from the previously used image. `imagePullPolicy: Always` does exist, it will not only slow down your pod starting up, but may incur extra bandwidth cost if your registry is outside of your k8s infrastructure.
+1. Use a proper `<tag>` value, either the version of your app or SHA sum of the last commit. K8s will cache the images so it doesn't have to re-pull the images if the pod was re-scheduled. If you use the same tag, it will not re-pull them despite actually being different from the previously used image. While `imagePullPolicy: Always` does exist, it will not only slow down your pod starting up, but may incur extra bandwidth cost if your registry is outside of your k8s infrastructure.
 2. The build process within Dockerfile has been set up with Laravel 9 in mind. You may need need to edit that portion if you're using a different app or framework.
