@@ -25,7 +25,7 @@ RUN npm i && npm run production
 
 # #
 # Running image with FPM.
-# No need to change anything beyond this.
+# For the most part, nothing beyond here needs changing except if you want to add more PHP extensions.
 # #
 FROM php:8-fpm-alpine as final
 
@@ -33,6 +33,7 @@ FROM php:8-fpm-alpine as final
 WORKDIR /var/www/html
 
 # Install docker-php-extension-installer to get more extensions
+# Check the repo for a list of supported extensions.
 ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
 RUN chmod +x /usr/local/bin/install-php-extensions && \
     install-php-extensions pdo_mysql
