@@ -31,6 +31,9 @@ spec:
         ports:
         - containerPort: 8080
         
-      # This will define credentials to be used when pulling from dockerhub
+      # This will define credentials to be used when pulling from dockerhub.
+      # If you have your registry within the same infra (eg: using GKE with GCP Container Registry),
+      # then this is not needed. Although those providers would have their own method for 
+      # auth, so make sure to check their docs.
       imagePullSecrets:
       - name: regcred
