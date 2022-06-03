@@ -1,0 +1,22 @@
+# A Service allows your app to be reached by other pods. If your app does not need 
+# to be reached (eg: background process, queue workers), then it does need a Service.
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: app
+  labels:
+    name: app
+spec:
+  # ClusterIP allows connection from other pods, but not externally.
+  # For use with ingress, set it to NodePort.
+  type: ClusterIP
+  ports:
+
+  # `port` is how _other_ pods reaches this service.
+  # `targetPort` is the port your app uses.
+  # If they are of the same value, set it to `port` and remove `targetPort`.
+  - port: 80
+    targetPort: 8080
+  selector:
+    name: app

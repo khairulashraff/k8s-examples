@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app
+spec:
+  selector:
+    matchLabels:
+      name: app
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: app
+    spec:
+      containers:
+      - name: app
+        image: <registry>:<tag>
+
+        # Add your env values here. No need to use this if you're using .env file.
+        # env:
+        # - name: ENV_1
+        #   value: true
+
+        # Make sure to always set resource request to prevent it from draining all your resources.
+        # Will also ensure there's enough resource for it to run in the first place.
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+
+        ports:
+        - containerPort: 8080
+        
+      # This will define credentials to be used when pulling from dockerhub
+      imagePullSecrets:
+      - name: regcred
