@@ -19,7 +19,7 @@ spec:
         # Add your env values here. No need to use this if you're using .env file.
         # env:
         # - name: ENV_1
-        #   value: true
+        #   value: "true"
 
         # Make sure to always set resource request to prevent it from draining all your resources.
         # Will also ensure there's enough resource for it to run in the first place.
