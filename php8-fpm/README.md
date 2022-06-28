@@ -8,7 +8,7 @@
    1. `docker push <registry>:<tag>`
 5. Edit `deployment.xml` and replace `<docker-image>` with `<registry>:<tag>`.
 6. Add your registry's credentials to K8s.
-   - https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
+   - https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/#create-a-secret-by-providing-credentials-on-the-command-line
 7. Run these two to deploy them to k8s
    1.  `kubectl apply -f deployments.yaml`
    2.  `kubectl appyl -f service.yaml`
