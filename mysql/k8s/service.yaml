@@ -1,0 +1,19 @@
+# A Service allows your app to be reached by other pods. 
+# MySQL being a database would obviously need this.
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql
+  labels:
+    name: mysql
+spec:
+  # We only need it to be accessed by other pods so ClusterIP is enough.
+  type: ClusterIP
+  ports:
+
+  # `port` is how _other_ pods reaches this service.
+  # MySQL uses 3306 so that is we'll set here.
+  - port: 3306
+  selector:
+    name: mysql

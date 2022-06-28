@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql
+spec:
+  selector:
+    matchLabels:
+      name: mysql
+  template:
+    metadata:
+      labels:
+        name: mysql
+    spec:
+      containers:
+      - name: mysql
+        image: mysql:5
+
+        # A random password will be generated for you. Get it from logs
+        # after MySQL completes its initialization.
+        env:
+        - name: MYSQL_RANDOM_ROOT_PASSWORD
+          value: "true"
+
+        # Update this based on your needs. Added here is the minimum to get it running.
+        resources:
+          requests:
+            cpu: "200m"
+            memory: "512Mi"
+
+        ports:
+        - containerPort: 3306
+
+        # Mount persistent volume based on where MySQL store its data
+        volumeMounts:
+        - mountPath: "/var/lib/mysql"
+          name: mysql-data
+          subPath: mysql
+
+      # Use the PVC. Make sure to apply pvc.yaml first
+      volumes:
+        - name: mysql-data
+          persistentVolumeClaim:
+            claimName: mysql-data
